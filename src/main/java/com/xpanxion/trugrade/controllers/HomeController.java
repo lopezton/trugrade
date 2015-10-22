@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/")
 public class HomeController {
 	
-	public static String HOME_VIEW = "home";
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getHome(HttpServletRequest request, Model model) {
-		return HOME_VIEW;
+		return ControllerConstants.VIEW_HOME;
 	}
 }

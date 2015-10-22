@@ -7,13 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xpanxion.trugrade.controllers.ControllerConstants;
 import com.xpanxion.trugrade.objects.TestCase;
 
 @Controller
-@RequestMapping(value = "/testcase/{id}")
+@RequestMapping(value = "/{projectName}/testcase/{id}")
 public class IndividualTestCaseController extends BaseTestCaseController {
-
-	public static final String INDIVIDUAL_TEST_CASE_VIEW = "test-case-individual";
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST)
@@ -26,18 +25,18 @@ public class IndividualTestCaseController extends BaseTestCaseController {
 	@RequestMapping(method = RequestMethod.PUT)
 	public void updateTestCase(@PathVariable Long id, TestCase testCase) {
 		testCase.setId(id);
-		this.testCaseDao.save(testCase);
+		this.projectService.updateTestCase(testCase);
 	}
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.DELETE)
 	public void deleteTestCase(@PathVariable Long id) {
-		this.testCaseDao.delete(id);
+		this.projectService.removeTestCase(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getTestCase(@PathVariable Long id, Model model) {
-		model.addAttribute("testcase", this.testCaseDao.findOne(id));
-		return INDIVIDUAL_TEST_CASE_VIEW;
+		model.addAttribute("testcase", this.projectService.getTestCase(id));
+		return ControllerConstants.VIEW_INDIVIDUAL_TEST_CASE;
 	}
 }

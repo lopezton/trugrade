@@ -1,27 +1,23 @@
 package com.xpanxion.trugrade.objects;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class TestCase {
+public class Project {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Project project;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	private TestGroup testGroup;
 	
 	@Column
 	@NotEmpty
@@ -29,13 +25,27 @@ public class TestCase {
 	
 	@Column
 	private String description;
-
-	public TestGroup getTestGroup() {
-		return testGroup;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+	private List<TestGroup> testGroups;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+	private List<TestCase> testCases;
+	
+	public List<TestCase> getTestCases() {
+		return testCases;
 	}
 
-	public void setTestGroup(TestGroup testGroup) {
-		this.testGroup = testGroup;
+	public void setTestCases(List<TestCase> testCases) {
+		this.testCases = testCases;
+	}
+
+	public List<TestGroup> getTestGroups() {
+		return testGroups;
+	}
+
+	public void setTestGroups(List<TestGroup> testGroups) {
+		this.testGroups = testGroups;
 	}
 
 	public Long getId() {
@@ -60,14 +70,6 @@ public class TestCase {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
 	}
 	
 }

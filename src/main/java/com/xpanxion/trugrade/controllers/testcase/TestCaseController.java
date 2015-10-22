@@ -12,23 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xpanxion.trugrade.controllers.ControllerConstants;
 import com.xpanxion.trugrade.objects.TestCase;
 
 @Controller
 @RequestMapping(value = "/testcase")
 public class TestCaseController extends BaseTestCaseController {
-
-	public static final String TEST_CASE_VIEW = "test-cases";
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getTestCases(HttpServletRequest request, Model model) {
-		model.addAttribute("testCases", this.testCaseDao.findAll());
-		return TEST_CASE_VIEW;
+		model.addAttribute("testCases", this.projectService.getAllTestCases());
+		return ControllerConstants.VIEW_TEST_CASE;
 	}
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST)
 	public Iterable<TestCase> addTestCases(@Valid @RequestBody List<TestCase> testCases) {
-		return this.testCaseDao.save(testCases);
+		return this.projectService.addAllTestCases(testCases);
 	}
 }

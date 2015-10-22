@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.xpanxion.trugrade.controllers.ControllerConstants;
+
 @Controller
 @RequestMapping(value = "/testcase/{id}/edit")
-public class EditTestCaseController2 extends BaseTestCaseController {
-
-	public static final String EDIT_TEST_CASE_VIEW = "edit-testcase";
+public class EditTestCaseController extends BaseTestCaseController {
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getAddTestCase(@PathVariable Long id, Model model) {
-		model.addAttribute("testcase", this.testCaseDao.findOne(id));
-		return EDIT_TEST_CASE_VIEW;
+	public String getEditTestCase(@PathVariable Long id, Model model) {
+		model.addAttribute("testcase", this.projectService.getTestCase(id));
+		return ControllerConstants.VIEW_EDIT_TEST_CASE;
 	}
 }
