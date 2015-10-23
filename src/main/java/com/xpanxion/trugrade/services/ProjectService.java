@@ -27,7 +27,7 @@ public interface ProjectService {
 	 * @param projectName
 	 * @return
 	 */
-	TestGroup getTestGroupsByProject(String projectName);
+	Iterable<TestGroup> getTestGroupsByProject(String projectName);
 
 	/**
 	 * 
@@ -35,14 +35,14 @@ public interface ProjectService {
 	 * @param testGroupName
 	 * @return
 	 */
-	Iterable<TestGroup> getTestGroup(String projectName, String testGroupName);
+	TestGroup getTestGroup(String projectName, String testGroupName);
 
 	/**
 	 * 
 	 * @param projectName
 	 * @return
 	 */
-	TestGroup getProjectByName(String projectName);
+	Project getProjectByName(String projectName);
 
 	/**
 	 * 
@@ -81,5 +81,12 @@ public interface ProjectService {
 	 * @return
 	 */
 	Iterable<TestCase> addAllTestCases(List<TestCase> testCases);
+
+	/**
+	 * 
+	 * @param project
+	 * @return
+	 */
+	Project addProject(Project project);
 
 }

@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.xpanxion.trugrade.controllers.ControllerConstants;
 
 @Controller
-@RequestMapping(value = "/testcase/{id}/edit")
+@RequestMapping(value = "/{projectName}/testcases/{testCaseId}/edit")
 public class EditTestCaseController extends BaseTestCaseController {
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getEditTestCase(@PathVariable Long id, Model model) {
-		model.addAttribute("testcase", this.projectService.getTestCase(id));
+	public String getEditTestCase(@PathVariable Long testCaseId, Model model) {
+		model.addAttribute("testcase", this.projectService.getTestCase(testCaseId));
 		return ControllerConstants.VIEW_EDIT_TEST_CASE;
 	}
 }

@@ -3,11 +3,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-	    <title>Edit New Test Case</title>
+	    <title>Trugrade - Edit Test Case</title>
 	</head>
 
 <body>
-	<form th:action="@{'/testcase/'+${testcase.id}}" method="post">
+	<form th:action="@{'/' + ${testcase.project.name} + '/testcases/' + ${testcase.id}}" method="post"> 
 		<div class="row">
 			<label class="form-control" for="name">Name: </label>
 			<input class="form-control" name="name" type="text" placeholder="Enter a name" th:value="${testcase.name}" />

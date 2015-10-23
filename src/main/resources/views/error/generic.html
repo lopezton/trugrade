@@ -3,11 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-	    <title>Error</title>
+	    <title>Trugrade - Error!</title>
 	</head>
 
 <body>
-	<h1>System Error</h1>
+	<h1 th:text="${errorHeader}">Oops!</h1>
+	<p th:text="${errorMessage}">An unexpected system error has occurred. Please contact the system administrator.</p>
 </body>
 
 </html>

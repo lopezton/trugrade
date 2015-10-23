@@ -6,4 +6,10 @@ import com.xpanxion.trugrade.objects.Project;
 
 public interface ProjectDao extends CrudRepository<Project, Long> {
 
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	Project findOneByName(String name);
 }

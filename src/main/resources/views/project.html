@@ -3,14 +3,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-	    <title>Trugrade - Project ${project.name}</title>
+	    <title>Trugrade - Project: <span th:text="${project.name}"/></title>
 	</head>
 
 <body>
-	<h1>Project ${project.name}</h1>
+	<h1>Project <span th:text="${project.name}"/></h1>
 	
 	<h2>Test Groups</h2>
-	<table>
+	
+	<table th:if="null != ${project.testGroups}">
 		<tr>
 			<th>ID</th>
 			<th>Test Group Name</th>
@@ -28,7 +29,7 @@
 	</table>
 	
 	<h2>Test Cases</h2>
-	<table>
+	<table th:if="null != ${project.testCases}">
 		<tr>
 			<th>ID</th>
 			<th>Test Case Name</th>
@@ -36,14 +37,15 @@
 		</tr>
 		<tr th:each="testCase : ${project.testCases}">
 			<td>
-				<a th:text="${testCase.id}" th:href="@{'/' + ${project.name} + '/testcase/' + ${testCase.name}}"></a>
+				<a th:text="${testCase.id}" th:href="@{'/' + ${project.name} + '/testcases/' + ${testCase.id}}"></a>
 			</td>
 			<td>
-				<a th:text="${testGroup.name}" th:href="@{'/' + ${project.name} + '/testcase/' + ${testCase.name}}"></a>
+				<a th:text="${testCase.name}" th:href="@{'/' + ${project.name} + '/testcases/' + ${testCase.id}}"></a>
 			</td>
 			<td th:text="${testCase.description}"></td>
 		</tr>
 	</table>
+	
 </body>
 
 </html>

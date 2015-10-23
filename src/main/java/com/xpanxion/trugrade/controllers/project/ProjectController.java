@@ -1,5 +1,6 @@
 package com.xpanxion.trugrade.controllers.project;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.xpanxion.trugrade.controllers.ControllerConstants;
+import com.xpanxion.trugrade.objects.Project;
 import com.xpanxion.trugrade.services.ProjectService;
 
 @Controller
@@ -19,7 +21,15 @@ public class ProjectController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getProject(Model model, @PathVariable String projectName) {
-		model.addAttribute("projects", this.projectService.getProjectByName(projectName));
+		final Project project = this.projectService.getProjectByName(projectName);
+		
+		if (null == project) {
+			model.addAttribute("errorHeader", "Oops!");
+			model.addAttribute("errorMessage", "Project '" + projectName + "' was not found.");
+			return ControllerConstants.VIEW_GENERIC_ERROR;
+		}
+			
+		model.addAttribute("project", project);
 		return ControllerConstants.VIEW_PROJECT;
 	}
 

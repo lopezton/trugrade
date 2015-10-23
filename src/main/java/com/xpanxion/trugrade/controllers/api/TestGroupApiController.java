@@ -16,12 +16,12 @@ public class TestGroupApiController {
 	private ProjectService projectService;
 	
 	@RequestMapping(value = "/api/{projectName}/testgroups", method = RequestMethod.GET)
-	public TestGroup getTestGroups(@PathVariable String projectName) {
+	public Iterable<TestGroup> getTestGroups(@PathVariable String projectName) {
 		return this.projectService.getTestGroupsByProject(projectName);
 	}
 	
 	@RequestMapping(value = "/api/{projectName}/testgroups/{testGroupName}", method = RequestMethod.GET)
-	public Iterable<TestGroup> getTestGroup(@PathVariable String projectName, @PathVariable String testGroupName) {
+	public TestGroup getTestGroup(@PathVariable String projectName, @PathVariable String testGroupName) {
 		return this.projectService.getTestGroup(projectName, testGroupName);
 	}
 

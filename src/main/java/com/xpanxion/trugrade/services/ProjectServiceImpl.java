@@ -43,18 +43,18 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public TestGroup getTestGroupsByProject(String projectName) {
-		throw new UnsupportedOperationException();
+	public Iterable<TestGroup> getTestGroupsByProject(String projectName) {
+		return this.testGroupDao.findByProjectName(projectName);
 	}
 
 	@Override
-	public Iterable<TestGroup> getTestGroup(String projectName, String testGroupName) {
-		throw new UnsupportedOperationException();
+	public TestGroup getTestGroup(String projectName, String testGroupName) {
+		return this.testGroupDao.findOneByProjectNameAndName(projectName, testGroupName);
 	}
 
 	@Override
-	public TestGroup getProjectByName(String projectName) {
-		throw new UnsupportedOperationException();
+	public Project getProjectByName(String projectName) {
+		return this.projectDao.findOneByName(projectName);
 	}
 
 	@Override
@@ -101,6 +101,11 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public Iterable<TestCase> addAllTestCases(List<TestCase> testCases) {
 		return this.testCaseDao.save(testCases);
+	}
+
+	@Override
+	public Project addProject(Project project) {
+		return this.projectDao.save(project);
 	}
 	
 	

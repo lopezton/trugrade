@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-	    <title>Test Case - ${testcase.name}</title>
+	    <title>Trugrade - Test Case: ${testcase.name}</title>
 	</head>
 
 <body>
@@ -13,7 +13,7 @@
 	<p th:text="${testcase.name}"></p>
 	<h2>Description</h2>
 	<p th:text="${testcase.description}"></p>
-	<a class="form-control" th:href="@{'/testcase/'+${testcase.id}+'/edit'}">Edit</a>
+	<a class="form-control" th:href="@{'/' + ${testcase.project.name} + '/testcases/' + ${testcase.id} + '/edit'}">Edit</a>
 </body>
 
 </html>

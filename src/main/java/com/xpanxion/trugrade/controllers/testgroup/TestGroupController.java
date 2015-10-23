@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.xpanxion.trugrade.controllers.ControllerConstants;
+import com.xpanxion.trugrade.objects.TestGroup;
 import com.xpanxion.trugrade.services.ProjectService;
 
 @Controller
-@RequestMapping(value = "/{projectName}/testgroup/{testGroupName}")
+@RequestMapping(value = "/{projectName}/testgroups/{testGroupName}")
 public class TestGroupController {
 
 	@Autowired
@@ -19,8 +20,16 @@ public class TestGroupController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getTestGroup(Model model, @PathVariable String projectName, @PathVariable String testGroupName) {
-		model.addAttribute("testGroup", this.projectService.getTestGroup(projectName, testGroupName));
-		return ControllerConstants.VIEW_PROJECT;
+		final TestGroup testGroup = this.projectService.getTestGroup(projectName, testGroupName);
+		
+		if (null == testGroup) {
+			model.addAttribute("errorHeader", "Oops!");
+			model.addAttribute("errorMessage", "Test Group '" + testGroupName + "' was not found.");
+			return ControllerConstants.VIEW_GENERIC_ERROR;
+		}
+		
+		model.addAttribute("testGroup", testGroup);
+		return ControllerConstants.VIEW_TEST_GROUP;
 	}
 
 	/**
