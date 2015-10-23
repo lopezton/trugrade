@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TestGroup {
 
@@ -18,6 +20,7 @@ public class TestGroup {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Project project;
 	

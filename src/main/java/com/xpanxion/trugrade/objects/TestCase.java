@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TestCase {
 
@@ -17,9 +19,11 @@ public class TestCase {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Project project;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private TestGroup testGroup;
 	
