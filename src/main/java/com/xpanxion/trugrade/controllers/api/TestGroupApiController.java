@@ -21,7 +21,7 @@ public class TestGroupApiController {
 	}
 	
 	@RequestMapping(value = "/api/{projectName}/testgroups/{testGroupName}", method = RequestMethod.GET)
-	public Iterable<TestGroup> getTestGroup(@PathVariable Long projectName, @PathVariable String testGroupName) {
+	public Iterable<TestGroup> getTestGroup(@PathVariable String projectName, @PathVariable String testGroupName) {
 		return this.projectService.getTestGroup(projectName, testGroupName);
 	}
 

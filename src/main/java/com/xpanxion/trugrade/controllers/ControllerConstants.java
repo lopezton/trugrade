@@ -8,4 +8,5 @@ public class ControllerConstants {
 	public static final String VIEW_TEST_CASE = "test-cases";
 	public static final String VIEW_INDIVIDUAL_TEST_CASE = "test-case-individual";
 	public static final String VIEW_EDIT_TEST_CASE = "edit-testcase";
+	public static final String VIEW_PROJECT = "project";
 }

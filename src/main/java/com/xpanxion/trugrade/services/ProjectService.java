@@ -35,7 +35,7 @@ public interface ProjectService {
 	 * @param testGroupName
 	 * @return
 	 */
-	Iterable<TestGroup> getTestGroup(Long projectName, String testGroupName);
+	Iterable<TestGroup> getTestGroup(String projectName, String testGroupName);
 
 	/**
 	 * 

@@ -48,7 +48,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public Iterable<TestGroup> getTestGroup(Long projectName, String testGroupName) {
+	public Iterable<TestGroup> getTestGroup(String projectName, String testGroupName) {
 		throw new UnsupportedOperationException();
 	}
 
